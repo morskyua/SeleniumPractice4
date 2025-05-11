@@ -1,9 +1,7 @@
 package org.epam.pages;
 
-import org.epam.util.WebDriverSingleton;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -28,9 +26,6 @@ public class GmailPage extends BasePage {
 
     @FindBy(xpath = "//*[@role='main']//tr[1]/td[5]/div/div/div/span/span")
     private WebElement emailSubject;
-
-    @FindBy(xpath = "//*[@role='main']//tr")
-    private List<WebElement> emails;
 
     @FindBy(xpath = "//div[contains(@aria-label, 'Discard draft')]")
     private WebElement deleteDraftButton;
@@ -74,6 +69,27 @@ public class GmailPage extends BasePage {
     @FindBy(xpath = "//button[@aria-label='Expand all']")
     private WebElement expandAllButton;
 
+    @FindBy(xpath = "//*[@role='main']//td")
+    private WebElement noDraftsNotification;
+
+    @FindBy(xpath = "//*[@role='main']//tr")
+    private List<WebElement> emails;
+
+    @FindBy(xpath = "//*[@role='main']//td[@data-tooltip='Select']")
+    private List<WebElement> emailSelectors;
+
+    public List<WebElement> getEmailSelectors() {
+        return emailSelectors;
+    }
+
+    public List<WebElement> getMoreMessageOptions() {
+        return moreMessageOptions;
+    }
+
+    public WebElement getNoDraftsNotification() {
+        return noDraftsNotification;
+    }
+
     public WebElement getExpandAllButton() {
         return expandAllButton;
     }
@@ -88,10 +104,6 @@ public class GmailPage extends BasePage {
 
     public WebElement getMarkAsStarredButton() {
         return markAsStarredButton;
-    }
-
-    public WebElement getMoreMessageOptions() {
-        return moreMessageOptions.getLast();
     }
 
     public WebElement getDeleteReplyButton() {
@@ -146,10 +158,6 @@ public class GmailPage extends BasePage {
         return draftsButton;
     }
 
-    public WebElement getFirstEmail() {
-        return emails.getFirst();
-    }
-
     public WebElement getEmailSubject() {
         return emailSubject;
     }
@@ -158,69 +166,14 @@ public class GmailPage extends BasePage {
         return deleteDraftButton;
     }
 
-    public void createDraftMail(String address, String subject, String text) {
-        getComposeButton().click();
-        wait.until(driver -> getSubjectInput().isEnabled());
-        getRecipientsInput().sendKeys(address);
-        getSubjectInput().sendKeys(subject);
-        getTextInput().sendKeys(text);
-        getCloseButton().click();
+    public WebElement getFirstEmail() {
+        return emails.getFirst();
     }
 
-    public void openDrafts() {
-        getDraftsButton().click();
-        wait.until(driver -> getDraftsButton().getAttribute("class").contains("aiq"));
-    }
+    public WebElement getLastMoreMessageOptionsButton() {return moreMessageOptions.getLast();}
 
-    public void deleteDraft() {
-        getFirstEmail().click();
-        wait.until(ExpectedConditions.visibilityOf(getDeleteDraftButton()));
-        getDeleteDraftButton().click();
-    }
-
-    public GmailPage replyToEmail(String text) {
-        getFirstEmail().click();
-        getReplyButton().click();
-        getReplyTextArea().sendKeys(text);
-        getSendReplyButton().click();
-        WebDriverSingleton.quickWait(ExpectedConditions.invisibilityOf(getSendReplyButton()), wait);
-        return this;
-    }
-
-    public GmailPage openSentEmails() {
-        getSentButton().click();
-        wait.until(driver1 -> getAdvancedSearchButton().isEnabled());
-        return this;
-    }
-
-    public String getFirstReplyText() {
-        openFirstEmail();
-        return getReplyEmailText().getText();
-    }
-
-    public void deleteReply() {
-        if (!emails.isEmpty()) {
-            openFirstEmail();
-        }
-        getMoreMessageOptions().click();
-        wait.until(ExpectedConditions.visibilityOf(getDeleteReplyButton()));
-        getDeleteReplyButton().click();
-        wait.until(ExpectedConditions.invisibilityOf(getExpandAllButton()));
-    }
-
-    public void openFirstEmail() {
-        getFirstEmail().click();
-        wait.until(ExpectedConditions.visibilityOf(getMoreMessageOptions()));
-    }
-
-    public void openStarredEmails() {
-        getStarredButton().click();
-        wait.until(driver -> getFirstEmail().isDisplayed());
-    }
-
-    public void markAsStarred() {
-        getFirstEmail().click();
-        getMarkAsStarredButton().click();
+    public List<WebElement> getEmails() {
+        return emails;
     }
 
 }

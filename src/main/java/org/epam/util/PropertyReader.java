@@ -1,5 +1,8 @@
 package org.epam.util;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemProperties;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -11,10 +14,15 @@ public class PropertyReader {
     private PropertyReader() {
     }
 
-    public static PropertyReader fromProperties(String path) {
+    public static PropertyReader getEnvProperties() {
         if (propertyReader == null) {
             propertyReader = new PropertyReader();
-            propertyReader.readProperties(path);
+            String environment = SystemProperties.getProperty("environment");
+            if (StringUtils.isBlank(environment)) {
+                propertyReader.readProperties("src/test/resources/prod.properties");
+            } else {
+                propertyReader.readProperties(String.format("src/test/resources/%s.properties", environment));
+            }
         }
         return propertyReader;
     }

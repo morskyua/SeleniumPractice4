@@ -1,3 +1,5 @@
+mvn clean test -Dtest=smoke-suite -Dbrowser=chrome -Denvironment=prod
+
 Scenario 1: Create and Delete a Draft Email
 Steps:
 

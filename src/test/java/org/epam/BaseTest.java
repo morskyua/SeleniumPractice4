@@ -1,26 +1,32 @@
 package org.epam;
 
-import org.epam.pages.GmailLoginPage;
-import org.epam.pages.GmailPage;
+import org.epam.businessobjects.GmailLoginBO;
 import org.epam.util.PropertyReader;
+import org.epam.util.TestListener;
 import org.epam.util.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 
-public class BaseTest {
-    protected final PropertyReader propertyReader = PropertyReader.fromProperties("src/test/resources/prod.properties");
-    protected GmailPage gmailPage;
-    protected GmailLoginPage loginPage;
+@Listeners(TestListener.class)
+public abstract class BaseTest {
+    private final PropertyReader propertyReader = PropertyReader.getEnvProperties();
+    private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
+    protected GmailLoginBO gmailLoginBO;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup() {
         WebDriver driver = WebDriverSingleton.getDriver();
-        loginPage = PageFactory.initElements(driver, GmailLoginPage.class);
-        gmailPage = PageFactory.initElements(driver, GmailPage.class);
+        gmailLoginBO = new GmailLoginBO(driver);
         String url = propertyReader.getProperty("gmailComUrl");
+        logger.info("Opening Gmail Login page: " + url);
         driver.get(url);
-        loginPage.login(propertyReader.getProperty("login"), propertyReader.getProperty("password"));
+        String login = propertyReader.getProperty("login");
+        String password = propertyReader.getProperty("password");
+        logger.info("Log in with {} login and {} password", login, password);
+        gmailLoginBO.login(login, password);
     }
 
 }

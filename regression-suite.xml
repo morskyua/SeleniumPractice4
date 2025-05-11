@@ -1,5 +1,8 @@
-<suite name="Test suite">
-    <test name="Test">
+<suite name="Regression suite">
+    <test name="Regression">
+        <listeners>
+            <listener class-name="org.epam.util.TestListener" />
+        </listeners>
         <classes>
             <class name="org.epam.CreateSaveAndDeleteDraftEmailTest"></class>
             <class name="org.epam.MarkAsStarredEmailTest"></class>

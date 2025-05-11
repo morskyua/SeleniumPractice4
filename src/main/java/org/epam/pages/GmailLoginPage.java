@@ -2,7 +2,6 @@ package org.epam.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GmailLoginPage extends BasePage {
     @FindBy(id = "identifierId")
@@ -24,13 +23,5 @@ public class GmailLoginPage extends BasePage {
 
     public WebElement getNextButton() {
         return nextButton;
-    }
-
-    public void login(String login, String password) {
-        getLoginInput().sendKeys(login);
-        getNextButton().click();
-        wait.until(ExpectedConditions.visibilityOf(getPasswordInput()));
-        getPasswordInput().sendKeys(password);
-        getNextButton().click();
     }
 }

@@ -1,0 +1,16 @@
+<suite name="Smoke suite">
+    <groups>
+        <run>
+            <include name="smoke"/>
+        </run>
+    </groups>
+    <test name="Smoke">
+        <listeners>
+            <listener class-name="org.epam.util.TestListener"/>
+        </listeners>
+        <classes>
+            <class name="org.epam.CreateSaveAndDeleteDraftEmailTest"></class>
+            <class name="org.epam.ReplyToAndDeleteEmailTest"></class>
+        </classes>
+    </test>
+</suite>
