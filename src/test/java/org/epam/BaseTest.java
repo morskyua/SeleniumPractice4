@@ -14,12 +14,11 @@ import org.testng.annotations.Listeners;
 public abstract class BaseTest {
     private final PropertyReader propertyReader = PropertyReader.getEnvProperties();
     private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
-    protected GmailLoginBO gmailLoginBO;
 
     @BeforeMethod(alwaysRun = true)
     public void setup() {
         WebDriver driver = WebDriverSingleton.getDriver();
-        gmailLoginBO = new GmailLoginBO(driver);
+        GmailLoginBO gmailLoginBO = new GmailLoginBO(driver);
         String url = propertyReader.getProperty("gmailComUrl");
         logger.info("Opening Gmail Login page: " + url);
         driver.get(url);
