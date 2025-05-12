@@ -387,3 +387,59 @@
 2025-05-12 12:58:03 [main] INFO  o.e.businessobjects.ManageRepliesBO - Deleting the reply
 2025-05-12 12:58:08 [main] INFO  org.epam.util.WebDriverSingleton - Closing a page
 2025-05-12 12:58:09 [main] INFO  org.epam.util.WebDriverSingleton - Removing driver
+2025-05-12 13:31:05 [main] WARN  org.testng.xml.TestNGContentHandler - It is strongly recommended to add "<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd" >" at the top of the suite file [C:\Users\Norma\IdeaProjects\Practice3\src\test\resources\regression-suite.xml] otherwise TestNG may fail or not work as expected.
+2025-05-12 13:31:05 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 136.0.7103.92 (resolved driver for Chrome 136)
+2025-05-12 13:31:05 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Norma\.cache\selenium\chromedriver\win64\136.0.7103.92\chromedriver.exe
+2025-05-12 13:31:05 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 136.0.7103.92 (resolved driver for Chrome 136)
+2025-05-12 13:31:05 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Norma\.cache\selenium\chromedriver\win64\136.0.7103.92\chromedriver.exe
+2025-05-12 13:31:06 [main] INFO  org.epam.BaseTest - Opening Gmail Login page: https://gmail.com/
+2025-05-12 13:31:07 [main] INFO  org.epam.BaseTest - Log in with d13465322@gmail.com login and testPassword password
+2025-05-12 13:31:11 [main] INFO  o.e.businessobjects.ManageDraftsBO - Creating draft email and saving
+2025-05-12 13:31:15 [main] INFO  o.e.businessobjects.ManageDraftsBO - Opening drafts
+2025-05-12 13:31:18 [main] INFO  o.e.businessobjects.ManageDraftsBO - Deleting draft email
+2025-05-12 13:31:18 [main] INFO  o.e.CreateSaveAndDeleteDraftEmailTest - Verifying that draft is deleted
+2025-05-12 13:31:18 [main] INFO  org.epam.util.WebDriverSingleton - Closing a page
+2025-05-12 13:31:18 [main] INFO  org.epam.util.WebDriverSingleton - Removing driver
+2025-05-12 13:31:18 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 136.0.7103.92 (resolved driver for Chrome 136)
+2025-05-12 13:31:18 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Norma\.cache\selenium\chromedriver\win64\136.0.7103.92\chromedriver.exe
+2025-05-12 13:31:19 [main] INFO  org.epam.BaseTest - Opening Gmail Login page: https://gmail.com/
+2025-05-12 13:31:20 [main] INFO  org.epam.BaseTest - Log in with d13465322@gmail.com login and testPassword password
+2025-05-12 13:31:23 [main] INFO  o.e.businessobjects.ManageDraftsBO - Creating draft email and saving
+2025-05-12 13:31:28 [main] INFO  o.e.businessobjects.ManageDraftsBO - Opening drafts
+2025-05-12 13:31:29 [main] INFO  o.e.CreateSaveAndDeleteDraftEmailTest - Verifying draft subject
+2025-05-12 13:31:29 [main] INFO  o.e.businessobjects.ManageDraftsBO - Deleting draft email
+2025-05-12 13:31:29 [main] INFO  org.epam.util.WebDriverSingleton - Closing a page
+2025-05-12 13:31:29 [main] INFO  org.epam.util.WebDriverSingleton - Removing driver
+2025-05-12 13:31:29 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 136.0.7103.92 (resolved driver for Chrome 136)
+2025-05-12 13:31:29 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Norma\.cache\selenium\chromedriver\win64\136.0.7103.92\chromedriver.exe
+2025-05-12 13:31:30 [main] INFO  org.epam.BaseTest - Opening Gmail Login page: https://gmail.com/
+2025-05-12 13:31:31 [main] INFO  org.epam.BaseTest - Log in with d13465322@gmail.com login and testPassword password
+2025-05-12 13:31:36 [main] INFO  o.epam.businessobjects.MarkEmailBO - Marking email as starred
+2025-05-12 13:31:39 [main] INFO  o.epam.businessobjects.MarkEmailBO - Open starred emails
+2025-05-12 13:31:41 [main] INFO  org.epam.MarkAsStarredEmailTest - Verifying that email is marked as starred
+2025-05-12 13:31:41 [main] INFO  org.epam.businessobjects.BaseBO - Opening first email
+2025-05-12 13:31:41 [main] INFO  o.epam.businessobjects.MarkEmailBO - UnMark the email
+2025-05-12 13:31:46 [main] INFO  org.epam.util.WebDriverSingleton - Closing a page
+2025-05-12 13:31:46 [main] INFO  org.epam.util.WebDriverSingleton - Removing driver
+2025-05-12 13:31:46 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 136.0.7103.92 (resolved driver for Chrome 136)
+2025-05-12 13:31:46 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Norma\.cache\selenium\chromedriver\win64\136.0.7103.92\chromedriver.exe
+2025-05-12 13:31:47 [main] INFO  org.epam.BaseTest - Opening Gmail Login page: https://gmail.com/
+2025-05-12 13:31:48 [main] INFO  org.epam.BaseTest - Log in with d13465322@gmail.com login and testPassword password
+2025-05-12 13:31:51 [main] INFO  o.e.businessobjects.ManageRepliesBO - Replying to email and sending the reply
+2025-05-12 13:31:57 [main] INFO  o.e.businessobjects.ManageRepliesBO - Opening sent emails
+2025-05-12 13:32:03 [main] INFO  org.epam.businessobjects.BaseBO - Opening first email
+2025-05-12 13:32:03 [main] INFO  o.e.businessobjects.ManageRepliesBO - Deleting the reply
+2025-05-12 13:32:08 [main] INFO  org.epam.ReplyToAndDeleteEmailTest - Verifying that reply is deleted
+2025-05-12 13:32:08 [main] INFO  org.epam.util.WebDriverSingleton - Closing a page
+2025-05-12 13:32:08 [main] INFO  org.epam.util.WebDriverSingleton - Removing driver
+2025-05-12 13:32:08 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 136.0.7103.92 (resolved driver for Chrome 136)
+2025-05-12 13:32:08 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Norma\.cache\selenium\chromedriver\win64\136.0.7103.92\chromedriver.exe
+2025-05-12 13:32:09 [main] INFO  org.epam.BaseTest - Opening Gmail Login page: https://gmail.com/
+2025-05-12 13:32:10 [main] INFO  org.epam.BaseTest - Log in with d13465322@gmail.com login and testPassword password
+2025-05-12 13:32:15 [main] INFO  o.e.businessobjects.ManageRepliesBO - Replying to email and sending the reply
+2025-05-12 13:32:21 [main] INFO  o.e.businessobjects.ManageRepliesBO - Opening sent emails
+2025-05-12 13:32:22 [main] INFO  org.epam.ReplyToAndDeleteEmailTest - Verifying reply subject
+2025-05-12 13:32:27 [main] INFO  org.epam.businessobjects.BaseBO - Opening first email
+2025-05-12 13:32:27 [main] INFO  o.e.businessobjects.ManageRepliesBO - Deleting the reply
+2025-05-12 13:32:32 [main] INFO  org.epam.util.WebDriverSingleton - Closing a page
+2025-05-12 13:32:32 [main] INFO  org.epam.util.WebDriverSingleton - Removing driver
