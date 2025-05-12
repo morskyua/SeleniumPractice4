@@ -1,4 +1,21 @@
-mvn clean test -Dtest=smoke-suite -Dbrowser=chrome -Denvironment=prod
+To run specific test class with different parameters use this command:
+
+```
+mvn clean test -Dtest=ReplyToAndDeleteEmailTest -Dbrowser=chrome -Denvironment=prod
+```
+
+To run test suite with different parameters use this command:
+
+```
+mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/smoke-suite.xml -Denvironment=dev -Dbrowser=chrome
+```
+
+Available parameters:
+
+- **environment: dev, prod**
+- **suite: surefire.suiteXmlFiles=src/test/resources/smoke-suite.xml, surefire.suiteXmlFiles=src/test/resources/regression-suite.xml**
+- **test: CreateSaveAndDeleteDraftEmailTest, MarkAsStarredEmailTest, ReplyToAndDeleteEmailTest**
+- **browser: chrome, edge, firefox**
 
 Scenario 1: Create and Delete a Draft Email
 Steps:

@@ -13,12 +13,12 @@ public class MarkAsStarredEmailTest extends BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(MarkAsStarredEmailTest.class);
     private MarkEmailBO markEmailBO;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     void setUp() {
         markEmailBO = new MarkEmailBO();
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     void tearDown() {
         markEmailBO.unMark();
         WebDriverSingleton.tearDown();

@@ -1,14 +1,11 @@
 package org.epam.businessobjects;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MarkEmailBO extends BaseBO {
     private static final Logger logger = LoggerFactory.getLogger(MarkEmailBO.class);
-    public int getStarredCount() {
-        return gmailPage.getEmailSelectors().size();
-    }
-
     public MarkEmailBO markAsStarred() {
         logger.info("Marking email as starred");
         gmailPage.getFirstEmail().click();
@@ -24,8 +21,13 @@ public class MarkEmailBO extends BaseBO {
     }
 
     public void unMark() {
-        logger.info("UnMark the email");
         openFirstEmail();
+        logger.info("UnMark the email");
         gmailPage.getEmailStarredButton().click();
+        wait.until(ExpectedConditions.invisibilityOf(gmailPage.getEmailStarredButton()));
+    }
+
+    public int getStarredCount() {
+        return gmailPage.getEmailSelectors().size();
     }
 }

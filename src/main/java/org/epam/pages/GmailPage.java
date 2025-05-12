@@ -72,7 +72,7 @@ public class GmailPage extends BasePage {
     @FindBy(xpath = "//*[@role='main']//td")
     private WebElement noDraftsNotification;
 
-    @FindBy(xpath = "//*[@role='main']//tr")
+    @FindBy(xpath = "//*[@role='main']//tr[@role='row']")
     private List<WebElement> emails;
 
     @FindBy(xpath = "//*[@role='main']//td[@data-tooltip='Select']")
@@ -108,10 +108,6 @@ public class GmailPage extends BasePage {
 
     public WebElement getDeleteReplyButton() {
         return deleteReplyButton;
-    }
-
-    public WebElement getReplyEmailText() {
-        return replyEmailText;
     }
 
     public WebElement getSentButton() {

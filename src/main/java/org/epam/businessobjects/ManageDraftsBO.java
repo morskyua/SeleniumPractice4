@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class ManageDraftsBO extends BaseBO {
     private static final Logger logger = LoggerFactory.getLogger(ManageDraftsBO.class);
+
     public ManageDraftsBO createDraftMail(String address, String subject, String text) {
         logger.info("Creating draft email and saving");
         gmailPage.getComposeButton().click();
@@ -30,6 +31,7 @@ public class ManageDraftsBO extends BaseBO {
             gmailPage.getFirstEmail().click();
             wait.until(ExpectedConditions.visibilityOf(gmailPage.getDeleteDraftButton()));
             gmailPage.getDeleteDraftButton().click();
+            wait.until(ExpectedConditions.visibilityOf(gmailPage.getNoDraftsNotification()));
         }
         return this;
     }
