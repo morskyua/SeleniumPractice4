@@ -18,6 +18,7 @@ public class WebDriverSingleton {
 
     static {
         String browser = SystemProperties.getProperty("browser");
+        logger.debug("Getting browser property");
         switch (browser) {
             case null:
             case "edge":
@@ -44,7 +45,7 @@ public class WebDriverSingleton {
 
     public static WebDriver getDriver() {
         if (threadLocalInstance.get() == null) {
-            logger.info("Creating a driver");
+            logger.debug("Creating a driver");
             threadLocalInstance.set(createWebDriver());
         }
         return threadLocalInstance.get();
@@ -52,6 +53,7 @@ public class WebDriverSingleton {
 
     private static WebDriver createWebDriver() {
         WebDriver driver = manager.create();
+        logger.debug("set upping driver");
         driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_DURATION);
         driver.manage().window().maximize();
         return driver;
@@ -62,7 +64,7 @@ public class WebDriverSingleton {
         if (threadLocalInstance.get().getTitle() != null) {
             threadLocalInstance.get().quit();
         }
-        logger.info("Removing driver");
+        logger.debug("Removing driver");
         threadLocalInstance.remove();
     }
 

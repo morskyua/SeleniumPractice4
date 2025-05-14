@@ -14,6 +14,7 @@ import java.util.Date;
 
 public class ScreenshotUtil {
     private static final Logger logger = LoggerFactory.getLogger(ScreenshotUtil.class);
+
     public static void takeScreenshot(WebDriver driver) {
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

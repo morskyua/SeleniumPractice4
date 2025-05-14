@@ -1,42 +1,37 @@
 package org.epam;
 
-import org.epam.businessobjects.ManageRepliesBO;
+import org.epam.model.EmailReply;
+import org.epam.service.EmailCreator;
 import org.epam.util.WebDriverSingleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ReplyToAndDeleteEmailTest extends BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(ReplyToAndDeleteEmailTest.class);
-    private ManageRepliesBO manageRepliesBO;
-    @BeforeMethod(alwaysRun = true)
-    void setUp() {
-        manageRepliesBO = new ManageRepliesBO();
-    }
-
+    private final EmailReply emailReply = new EmailReply(EmailCreator.targetEmail(), "DemoReplyAssertText");
     @AfterMethod(alwaysRun = true)
     void removeReply() {
-        manageRepliesBO.deleteReply();
+        gmailPage.deleteReply(emailReply.getTarget());
         WebDriverSingleton.tearDown();
     }
 
     @Test(groups = "smoke")
     void testReplySubject() {
-        String actual = manageRepliesBO.replyToEmail("DemoReplyAssertText")
+        String actual = gmailPage.replyToEmail(emailReply)
                 .openSentEmails()
-                .getEmailSubject();
+                .getEmailSubjectText();
         logger.info("Verifying reply subject");
         Assert.assertEquals(actual, "DemoEmail");
     }
 
     @Test
     void testDeleteReply() {
-        int actual = manageRepliesBO.replyToEmail("DemoReplyAssertText")
+        int actual = gmailPage.replyToEmail(emailReply)
                 .openSentEmails()
-                .deleteReply()
+                .deleteReply(emailReply.getTarget())
                 .getReplyCount();
         logger.info("Verifying that reply is deleted");
         Assert.assertEquals(actual, 0);

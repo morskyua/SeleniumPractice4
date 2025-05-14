@@ -21,7 +21,7 @@ public class PropertyReader {
             if (StringUtils.isBlank(environment)) {
                 propertyReader.readProperties("src/test/resources/prod.properties");
             } else {
-                propertyReader.readProperties(String.format("src/test/resources/%s.properties", environment));
+                propertyReader.readProperties("src/test/resources/%s.properties".formatted(environment));
             }
         }
         return propertyReader;

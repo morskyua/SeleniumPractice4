@@ -1,7 +1,9 @@
 package org.epam.pages;
 
+import org.epam.model.User;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GmailLoginPage extends BasePage {
     @FindBy(id = "identifierId")
@@ -23,5 +25,13 @@ public class GmailLoginPage extends BasePage {
 
     public WebElement getNextButton() {
         return nextButton;
+    }
+
+    public void login(User user) {
+        getLoginInput().sendKeys(user.getUsername());
+        getNextButton().click();
+        wait.until(ExpectedConditions.visibilityOf(getPasswordInput()));
+        getPasswordInput().sendKeys(user.getPassword());
+        getNextButton().click();
     }
 }
