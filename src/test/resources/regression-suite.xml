@@ -4,9 +4,9 @@
             <listener class-name="org.epam.util.TestListener" />
         </listeners>
         <classes>
-            <class name="org.epam.CreateSaveAndDeleteDraftEmailTest"></class>
-            <class name="org.epam.MarkAsStarredEmailTest"></class>
-            <class name="org.epam.ReplyToAndDeleteEmailTest"></class>
+            <class name="org.epam.CreateSaveAndDeleteDraftAbstractEmailTest"></class>
+            <class name="org.epam.MarkAsStarredAbstractEmailTest"></class>
+            <class name="org.epam.ReplyToAndDeleteAbstractEmailTest"></class>
         </classes>
     </test>
 </suite>

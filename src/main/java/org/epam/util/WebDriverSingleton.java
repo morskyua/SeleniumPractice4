@@ -16,6 +16,8 @@ public class WebDriverSingleton {
     private static final ThreadLocal<WebDriver> threadLocalInstance;
     private static final WebDriverManager manager;
 
+//    SetUpping driver
+
     static {
         String browser = SystemProperties.getProperty("browser");
         logger.debug("Getting browser property");

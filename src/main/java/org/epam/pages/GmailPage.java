@@ -1,8 +1,9 @@
 package org.epam.pages;
 
-import org.epam.model.Email;
-import org.epam.model.EmailReply;
+import org.epam.model.AbstractEmail;
 import org.epam.util.WebDriverSingleton;
+import org.epam.webelements.Button;
+import org.epam.webelements.Input;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -63,28 +64,88 @@ public class GmailPage extends BasePage {
 
     @FindBy(xpath = "//div[@data-tooltip='Starred']")
     private WebElement starredButton;
-
     @FindBy(xpath = "//div[@aria-label='Starred']")
     private WebElement emailStarredButton;
-
-    @FindBy(xpath = "//*[@class='gmail_quote']")
-    private WebElement gmailQuoteInEmail;
-
     @FindBy(xpath = "//span[text()='Advanced search']")
     private WebElement advancedSearchButton;
-
     @FindBy(xpath = "//button[@aria-label='Expand all']")
     private WebElement expandAllButton;
-
     @FindBy(xpath = "//*[@role='main']//td")
     private WebElement noDraftsNotification;
-
     @FindBy(xpath = "//*[@role='main']//tr[@role='row']//*[@role='link']//span[@data-thread-id]")
     private List<WebElement> emailsSubjects;
     @FindBy(xpath = "//*[@role='main']//tr[@role='row']")
     private List<WebElement> emails;
     @FindBy(xpath = "//*[@role='main']//td[@data-tooltip='Select']")
     private List<WebElement> emailSelectors;
+
+    public Input getRecipientsInput() {
+        return new Input(recipientsInput);
+    }
+
+    public Input getSubjectInput() {
+        return new Input(subjectInput);
+    }
+
+    public Input getTextInput() {
+        return new Input(textInput);
+    }
+
+    public Button getExpandAllButton() {
+        return new Button(expandAllButton);
+    }
+
+    public Button getAdvancedSearchButton() {
+        return new Button(advancedSearchButton);
+    }
+
+    public Button getStarredButton() {
+        return new Button(starredButton);
+    }
+
+    public Button getMarkAsStarredButton() {
+        return new Button(markAsStarredButton);
+    }
+
+    public Button getDeleteReplyButton() {
+        return new Button(deleteReplyButton);
+    }
+
+    public Button getSentButton() {
+        return new Button(sentButton);
+    }
+
+    public Button getSendReplyButton() {
+        return new Button(sendReplyButton);
+    }
+
+    public Button getReplyButton() {
+        return new Button(replyButton);
+    }
+
+    public Button getEmailStarredButton() {
+        return new Button(emailStarredButton);
+    }
+
+    public Button getComposeButton() {
+        return new Button(composeButton);
+    }
+
+    public Button getCloseButton() {
+        return new Button(closeButton);
+    }
+
+    public Button getDraftsButton() {
+        return new Button(draftsButton);
+    }
+
+    public Button getDeleteDraftButton() {
+        return new Button(deleteDraftButton);
+    }
+
+    public Button getLastMoreMessageOptionsButton() {
+        return new Button(moreMessageOptions.getLast());
+    }
 
     public List<WebElement> getEmailSelectors() {
         return emailSelectors;
@@ -94,92 +155,24 @@ public class GmailPage extends BasePage {
         return moreMessageOptions;
     }
 
-    public WebElement getNoDraftsNotification() {
-        return noDraftsNotification;
-    }
-
-    public WebElement getExpandAllButton() {
-        return expandAllButton;
-    }
-
-    public WebElement getAdvancedSearchButton() {
-        return advancedSearchButton;
-    }
-
-    public WebElement getStarredButton() {
-        return starredButton;
-    }
-
-    public WebElement getMarkAsStarredButton() {
-        return markAsStarredButton;
-    }
-
-    public WebElement getDeleteReplyButton() {
-        return deleteReplyButton;
-    }
-
-    public WebElement getSentButton() {
-        return sentButton;
-    }
-
-    public WebElement getSendReplyButton() {
-        return sendReplyButton;
-    }
-
-    public WebElement getReplyTextArea() {
-        return replyTextArea;
-    }
-
-    public WebElement getReplyButton() {
-        return replyButton;
-    }
-
-    public WebElement getEmailStarredButton() {
-        return emailStarredButton;
-    }
-
-    public WebElement getComposeButton() {
-        return composeButton;
-    }
-
-    public WebElement getRecipientsInput() {
-        return recipientsInput;
-    }
-
-    public WebElement getSubjectInput() {
-        return subjectInput;
-    }
-
-    public WebElement getTextInput() {
-        return textInput;
-    }
-
-    public WebElement getCloseButton() {
-        return closeButton;
-    }
-
-    public WebElement getDraftsButton() {
-        return draftsButton;
+    public List<WebElement> getEmails() {
+        return emails;
     }
 
     public WebElement getEmailSubject() {
         return emailSubject;
     }
 
-    public WebElement getDeleteDraftButton() {
-        return deleteDraftButton;
+    public WebElement getNoDraftsNotification() {
+        return noDraftsNotification;
+    }
+
+    public WebElement getReplyTextArea() {
+        return replyTextArea;
     }
 
     public WebElement getFirstEmail() {
         return emails.getFirst();
-    }
-
-    public WebElement getLastMoreMessageOptionsButton() {
-        return moreMessageOptions.getLast();
-    }
-
-    public List<WebElement> getEmails() {
-        return emails;
     }
 
     public String getEmailSubjectText() {
@@ -197,13 +190,13 @@ public class GmailPage extends BasePage {
         return null;
     }
 
-    public GmailPage createDraftMail(Email draftEmail) {
+    public GmailPage createDraftMail(AbstractEmail draftAbstractEmail) {
         logger.info("Creating draft email and saving");
         getComposeButton().click();
         wait.until(driver -> getSubjectInput().isEnabled());
-        getRecipientsInput().sendKeys(draftEmail.getRecipient());
-        getSubjectInput().sendKeys(draftEmail.getSubject());
-        getTextInput().sendKeys(draftEmail.getDraftText());
+        getRecipientsInput().sendKeys(draftAbstractEmail.getRecipient());
+        getSubjectInput().sendKeys(draftAbstractEmail.getSubject());
+        getTextInput().sendKeys(draftAbstractEmail.getText());
         getCloseButton().click();
         return this;
     }
@@ -219,7 +212,7 @@ public class GmailPage extends BasePage {
         if (getEmptyNotification().isEmpty()) {
             logger.info("Deleting draft email");
             getFirstEmail().click();
-            wait.until(ExpectedConditions.visibilityOf(getDeleteDraftButton()));
+            getDeleteDraftButton().waitUntilVisible(true);
             getDeleteDraftButton().click();
             wait.until(ExpectedConditions.visibilityOf(getNoDraftsNotification()));
         }
@@ -230,13 +223,13 @@ public class GmailPage extends BasePage {
         return getNoDraftsNotification().getText();
     }
 
-    public GmailPage replyToEmail(EmailReply targetEmail) {
+    public GmailPage replyToEmail(AbstractEmail targetEmail) {
         logger.info("Replying to email and sending the reply");
-        getTargetEmail(targetEmail.getTarget().getSubject()).click();
+        getTargetEmail(targetEmail.getSubject()).click();
         getReplyButton().click();
         getReplyTextArea().sendKeys(targetEmail.getText());
         getSendReplyButton().click();
-        WebDriverSingleton.quickWait(ExpectedConditions.invisibilityOf(getSendReplyButton()), wait);
+        WebDriverSingleton.quickWait(ExpectedConditions.invisibilityOf(getSendReplyButton().getWebElement()), wait);
         return this;
     }
 
@@ -247,16 +240,16 @@ public class GmailPage extends BasePage {
         return this;
     }
 
-    public GmailPage deleteReply(Email email) {
+    public GmailPage deleteReply(AbstractEmail abstractEmail) {
         if (getReplyCount() != 0) {
             if (!getEmails().isEmpty()) {
-                getTargetEmail(email.getSubject()).click();
+                getTargetEmail(abstractEmail.getSubject()).click();
             }
             logger.info("Deleting the reply");
             getLastMoreMessageOptionsButton().click();
-            wait.until(ExpectedConditions.visibilityOf(getDeleteReplyButton()));
+            getDeleteReplyButton().waitUntilVisible(true);
             getDeleteReplyButton().click();
-            wait.until(ExpectedConditions.invisibilityOf(getExpandAllButton()));
+            getExpandAllButton().waitUntilVisible(false);
         }
         return this;
     }
@@ -265,9 +258,9 @@ public class GmailPage extends BasePage {
         return getMoreMessageOptions().size() - 1;
     }
 
-    public GmailPage markAsStarred(Email email) {
+    public GmailPage markAsStarred(AbstractEmail abstractEmail) {
         logger.info("Marking email as starred");
-        getTargetEmail(email.getSubject()).click();
+        getTargetEmail(abstractEmail.getSubject()).click();
         getMarkAsStarredButton().click();
         return this;
     }
@@ -279,11 +272,11 @@ public class GmailPage extends BasePage {
         return this;
     }
 
-    public void unMark(Email email) {
-        getTargetEmail(email.getSubject()).click();
+    public void unMark(AbstractEmail abstractEmail) {
+        getTargetEmail(abstractEmail.getSubject()).click();
         logger.info("UnMark the email");
         getEmailStarredButton().click();
-        wait.until(ExpectedConditions.invisibilityOf(getEmailStarredButton()));
+        getEmailStarredButton().waitUntilVisible(false);
     }
 
     public int getStarredCount() {

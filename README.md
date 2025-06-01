@@ -22,9 +22,9 @@ Steps:
 
 1. Open browser and navigate to Gmail login page.
 
-2. Enter valid email address and password, then click login.
+2. Enter valid abstractEmail address and password, then click login.
 
-3. Click "Compose" to create a new email.
+3. Click "Compose" to create a new abstractEmail.
 
 4. Fill in addressee, subject, and body.
 
@@ -34,20 +34,20 @@ Steps:
 
 7. Verify that the draft is present and subject is correct.
 
-8. Open the draft email.
+8. Open the draft abstractEmail.
 
 9. Assert that the reply text is correct.
 
-10. Delete the draft email.
+10. Delete the draft abstractEmail.
 
 Scenario 2: Reply to an Email and Verify it in Sent Folder
 Steps:
 
 1. Open browser and navigate to Gmail login page.
 
-2. Enter valid email address and password, then click login.
+2. Enter valid abstractEmail address and password, then click login.
 
-3. Open the first email from Inbox.
+3. Open the first abstractEmail from Inbox.
 
 4. Click "Reply."
 
@@ -57,31 +57,31 @@ Steps:
 
 7. Navigate to "Sent" folder.
 
-8. Assert that the reply email is present and subject is correct.
+8. Assert that the reply abstractEmail is present and subject is correct.
 
-9. Open the sent email.
+9. Open the sent abstractEmail.
 
 10. Assert that the reply text is correct.
 
-11. Delete the email.
+11. Delete the abstractEmail.
 
 Scenario 3: Mark an Email as Starred and Verify It
 Steps:
 
 1. Open browser and navigate to Gmail login page.
 
-2. Enter valid email address and password, then click login.
+2. Enter valid abstractEmail address and password, then click login.
 
-3. Open the first email from Inbox.
+3. Open the first abstractEmail from Inbox.
 
-4. Mark the email as "Starred."
+4. Mark the abstractEmail as "Starred."
 
 5. Navigate to the "Starred" label/folder.
 
-6. Assert that the email appears under "Starred."
+6. Assert that the abstractEmail appears under "Starred."
 
-7. Open the starred email.
+7. Open the starred abstractEmail.
 
-8. Assert that the email is still starred.
+8. Assert that the abstractEmail is still starred.
 
-9. unmark the email.
+9. unmark the abstractEmail.

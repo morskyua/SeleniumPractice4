@@ -1,8 +1,10 @@
 package org.epam;
 
+import org.epam.model.AbstractEmail;
 import org.epam.model.User;
 import org.epam.pages.GmailLoginPage;
 import org.epam.pages.GmailPage;
+import org.epam.service.EmailCreator;
 import org.epam.service.UserCreator;
 import org.epam.util.PropertyReader;
 import org.epam.util.TestListener;
@@ -16,9 +18,11 @@ import org.testng.annotations.Listeners;
 
 @Listeners(TestListener.class)
 public abstract class BaseTest {
-    private final PropertyReader propertyReader = PropertyReader.getEnvProperties();
     private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
+    private final PropertyReader propertyReader = PropertyReader.getEnvProperties();
     protected GmailLoginPage gmailLoginPage;
+    protected AbstractEmail abstractEmail;
+    protected EmailCreator emailCreator;
     protected GmailPage gmailPage;
 
     @BeforeMethod(alwaysRun = true)
@@ -27,6 +31,7 @@ public abstract class BaseTest {
         logger.debug("Initializing elements");
         gmailLoginPage = PageFactory.initElements(driver, GmailLoginPage.class);
         gmailPage = PageFactory.initElements(driver, GmailPage.class);
+        abstractEmail = emailCreator.createEmail();
         String url = propertyReader.getProperty("gmailComUrl");
         logger.info("Opening Gmail Login page: " + url);
         driver.get(url);

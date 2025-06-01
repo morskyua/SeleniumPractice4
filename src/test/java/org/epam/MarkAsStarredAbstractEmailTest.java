@@ -1,26 +1,31 @@
 package org.epam;
 
-import org.epam.model.Email;
-import org.epam.service.EmailCreator;
+import org.epam.service.MarkedEmailCreator;
 import org.epam.util.WebDriverSingleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class MarkAsStarredEmailTest extends BaseTest {
-    private static final Logger logger = LoggerFactory.getLogger(MarkAsStarredEmailTest.class);
-    private final Email email = EmailCreator.targetEmail();
+public class MarkAsStarredAbstractEmailTest extends BaseTest {
+    private static final Logger logger = LoggerFactory.getLogger(MarkAsStarredAbstractEmailTest.class);
+
+    @BeforeClass
+    void initEmail() {
+        emailCreator = new MarkedEmailCreator();
+    }
+
     @AfterMethod(alwaysRun = true)
     void tearDown() {
-        gmailPage.unMark(email);
+        gmailPage.unMark(abstractEmail);
         WebDriverSingleton.tearDown();
     }
 
     @Test
     void testMarkAsStarred() {
-        int actual = gmailPage.markAsStarred(email)
+        int actual = gmailPage.markAsStarred(abstractEmail)
                 .openStarredEmails()
                 .getStarredCount();
         logger.info("Verifying that email is marked as starred");

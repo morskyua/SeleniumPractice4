@@ -1,15 +1,9 @@
 package org.epam.service;
 
-import org.epam.model.Email;
+import org.epam.model.AbstractEmail;
 
-public class EmailCreator {
-    private static final String TEXT = "demoText";
+public abstract class EmailCreator {
+    protected static final String TEXT = "demoText";
 
-    public static Email createDraft() {
-        return new Email("demoAddress", "demoDraftSubject", TEXT);
-    }
-
-    public static Email targetEmail() {
-        return new Email("demonamedemosurnname@gmail.com", "DemoEmail", TEXT);
-    }
+    public abstract AbstractEmail createEmail();
 }

@@ -1,17 +1,22 @@
 package org.epam;
 
-import org.epam.model.Email;
-import org.epam.service.EmailCreator;
+import org.epam.service.DraftEmailCreator;
 import org.epam.util.WebDriverSingleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class CreateSaveAndDeleteDraftEmailTest extends BaseTest {
-    private static final Logger logger = LoggerFactory.getLogger(CreateSaveAndDeleteDraftEmailTest.class);
-    private final Email draftEmail = EmailCreator.createDraft();
+public class CreateSaveAndDeleteDraftAbstractEmailTest extends BaseTest {
+    private static final Logger logger = LoggerFactory.getLogger(CreateSaveAndDeleteDraftAbstractEmailTest.class);
+
+    @BeforeClass
+    public void initCreator() {
+        emailCreator = new DraftEmailCreator();
+    }
+
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         gmailPage.deleteDraft();
@@ -20,7 +25,7 @@ public class CreateSaveAndDeleteDraftEmailTest extends BaseTest {
 
     @Test(groups = "smoke")
     void testDraftSubject() {
-        String actual = gmailPage.createDraftMail(draftEmail)
+        String actual = gmailPage.createDraftMail(abstractEmail)
                 .openDrafts()
                 .getEmailSubject()
                 .getText();
@@ -30,7 +35,7 @@ public class CreateSaveAndDeleteDraftEmailTest extends BaseTest {
 
     @Test
     void testDeleteCreatedDraft() {
-        String actual = gmailPage.createDraftMail(draftEmail)
+        String actual = gmailPage.createDraftMail(abstractEmail)
                 .openDrafts()
                 .deleteDraft()
                 .getEmptyNotification();
