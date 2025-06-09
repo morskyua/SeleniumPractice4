@@ -6,14 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class CreateSaveAndDeleteDraftAbstractEmailTest extends BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(CreateSaveAndDeleteDraftAbstractEmailTest.class);
 
-    @BeforeClass
-    public void initCreator() {
+    public CreateSaveAndDeleteDraftAbstractEmailTest() {
         emailCreator = new DraftEmailCreator();
     }
 

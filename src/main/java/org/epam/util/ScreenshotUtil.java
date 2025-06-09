@@ -20,8 +20,9 @@ public class ScreenshotUtil {
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String filePath = "screenshots/" + timestamp + ".png";
         try {
-            FileUtils.copyFile(screenshot, new File(filePath));
-            logger.info("Screenshot is saved at " + filePath);
+            File file = new File(filePath);
+            FileUtils.copyFile(screenshot, file);
+            logger.info("RP_MESSAGE#FILE#{}#{}", file.getAbsolutePath(), "Attaching screenshot");
         } catch (IOException e) {
             e.printStackTrace();
         }

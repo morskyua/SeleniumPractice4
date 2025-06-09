@@ -7,16 +7,13 @@ import org.epam.pages.GmailPage;
 import org.epam.service.EmailCreator;
 import org.epam.service.UserCreator;
 import org.epam.util.PropertyReader;
-import org.epam.util.TestListener;
 import org.epam.util.WebDriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 
-@Listeners(TestListener.class)
 public abstract class BaseTest {
     private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
     private final PropertyReader propertyReader = PropertyReader.getEnvProperties();

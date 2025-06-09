@@ -1,7 +1,7 @@
 To run specific test class with different parameters use this command:
 
 ```
-mvn clean test -Dtest=ReplyToAndDeleteEmailTest -Dbrowser=chrome -Denvironment=prod
+mvn clean test -Dtest=ReplyToAndDeleteAbstractEmailTest.java -Dbrowser=chrome -Denvironment=prod
 ```
 
 To run test suite with different parameters use this command:
@@ -12,6 +12,7 @@ mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/smoke-suite.xml -Denv
 
 Available parameters:
 
+- **rp.api.key**
 - **environment: dev, prod**
 - **suite: surefire.suiteXmlFiles=src/test/resources/smoke-suite.xml, surefire.suiteXmlFiles=src/test/resources/regression-suite.xml**
 - **test: CreateSaveAndDeleteDraftEmailTest, MarkAsStarredEmailTest, ReplyToAndDeleteEmailTest**
